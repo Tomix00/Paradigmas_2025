@@ -64,12 +64,15 @@ data Superfluo = RotacionSuperflua | FlipSuperfluo
 
 ---- Chequea si el dibujo tiene una rotacion superflua
 errorRotacion :: Dibujo a -> [Superfluo]
+errorRotacion dib   | esRot360 dib  = [RotacionSuperflua]
+                    | otherwise = []
 
 ---- Chequea si el dibujo tiene un flip superfluo
 errorFlip :: Dibujo a -> [Superfluo]
+errorFlip dib   | esFlip2 dib = [FlipSuperfluo]
+                | otherwise = []
 
 ---- Aplica todos los chequeos y acumula todos los errores, y
 ---- sólo devuelve la figura si no hubo ningún error.
 checkSuperfluo :: Dibujo a -> Either [Superfluo] (Dibujo a)
-
-
+checkSuperfluo d = if null (errorRotacion d ++ errorFlip d) then Right d else Left (errorRotacion d ++ errorFlip d)
