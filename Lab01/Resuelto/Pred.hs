@@ -51,13 +51,13 @@ esRot360 = fst . foldDib
 -- Hay 2 espejados seguidos.
 esFlip2 :: Pred (Dibujo a)
 esFlip2 = fst . foldDib 
-                    (const (False,0))                       --if Basic -> dont have any esp
-                    (const (False,0))                       --if rot -> reset to 0
-                    (const (False,0))                       --if rot45 -> reset to 0
-                    (\(b,n) -> (b || n+1==2 , n+1))         --if esp, adds 1 to n, and (b || n+1=2)
-                    (\_ _ (b1,_) (b2,_) -> (b1 || b2,0))    --if apilar -> reset and takes OR
-                    (\_ _ (b1,_) (b2,_) -> (b1 || b2,0))    --if juntar -> same as apilar
-                    (\(b1,_) (b2,_) -> (b1||b2,0))          --if encimar -> same as apilar
+                    (const (False,0))
+                    (const (False,0))
+                    (const (False,0))
+                    (\(b,n) -> (b || n+1==2 , n+1))
+                    (\_ _ (b1,_) (b2,_) -> (b1 || b2,0))
+                    (\_ _ (b1,_) (b2,_) -> (b1 || b2,0))
+                    (\(b1,_) (b2,_) -> (b1||b2,0))
 
 
 data Superfluo = RotacionSuperflua | FlipSuperfluo

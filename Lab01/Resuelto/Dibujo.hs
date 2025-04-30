@@ -82,12 +82,21 @@ foldDib :: (a -> b) -> (b -> b) -> (b -> b) -> (b -> b) ->
        (b -> b -> b) ->
        Dibujo a -> b 
 foldDib basic rot rot45 esp api junt enc (Basica d) = basic d
-foldDib basic rot rot45 esp api junt enc (Rotar d) = rot (foldDib basic rot rot45 esp api junt enc d)
-foldDib basic rot rot45 esp api junt enc (Rotar45 d) = rot45 (foldDib basic rot rot45 esp api junt enc d)
-foldDib basic rot rot45 esp api junt enc (Espejar d) = esp (foldDib basic rot rot45 esp api junt enc d)
-foldDib basic rot rot45 esp api junt enc (Apilar x y d1 d2) = api x y (foldDib basic rot rot45 esp api junt enc d1) (foldDib basic rot rot45 esp api junt enc d2)
-foldDib basic rot rot45 esp api junt enc (Juntar x y d1 d2) = junt x y (foldDib basic rot rot45 esp api junt enc d1) (foldDib basic rot rot45 esp api junt enc d2)
-foldDib basic rot rot45 esp api junt enc (Encimar d1 d2) = enc (foldDib basic rot rot45 esp api junt enc d1) (foldDib basic rot rot45 esp api junt enc d2)
+foldDib basic rot rot45 esp api junt enc (Rotar d) =
+              rot (foldDib basic rot rot45 esp api junt enc d)
+foldDib basic rot rot45 esp api junt enc (Rotar45 d) =
+              rot45 (foldDib basic rot rot45 esp api junt enc d)
+foldDib basic rot rot45 esp api junt enc (Espejar d) =
+              esp (foldDib basic rot rot45 esp api junt enc d)
+foldDib basic rot rot45 esp api junt enc (Apilar x y d1 d2) =
+              api x y (foldDib basic rot rot45 esp api junt enc d1)
+                      (foldDib basic rot rot45 esp api junt enc d2)
+foldDib basic rot rot45 esp api junt enc (Juntar x y d1 d2) =
+              junt x y (foldDib basic rot rot45 esp api junt enc d1)
+                       (foldDib basic rot rot45 esp api junt enc d2)
+foldDib basic rot rot45 esp api junt enc (Encimar d1 d2) =
+              enc (foldDib basic rot rot45 esp api junt enc d1)
+                  (foldDib basic rot rot45 esp api junt enc d2)
 
 
 
