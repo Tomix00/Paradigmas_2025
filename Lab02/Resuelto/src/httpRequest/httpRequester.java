@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
 
 /* Esta clase se encarga de realizar efectivamente el pedido de feed al servidor de noticias
@@ -14,12 +13,10 @@ import java.net.URL;
 
 public class httpRequester {
 	
-	public String getFeedRss(String urlFeed){	//esta funcion es exclusiva para rss, alguna manera de parsear el url para manejo de url invalido?
-		String feedRssXml = null;
+	public String getFeed(String urlFeed){	//esta funcion es exclusiva para rss, alguna manera de parsear el url para manejo de url invalido?
+		String feedData = null;
 		try {
-			//URL url = new URL(urlFeed);
-			URI uri = URI.create(urlFeed);
-			URL url = uri.toURL();
+			URL url = new URL(urlFeed);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 		
@@ -34,7 +31,7 @@ public class httpRequester {
 					content.append(inputLine).append("\n");	//se lee por linea el inputstream, "\n" para que no sea toda una linea
 				}
 
-				feedRssXml = content.toString();
+				feedData = content.toString();
 				input.close();
 				inputStream.close();	//se cierran ambas conections
 			}else{
@@ -45,15 +42,10 @@ public class httpRequester {
 			
 		}
 		catch (Exception e) {
-            System.err.println("Error establishing connection: " + e.getMessage());
+            System.err.println("Error establishing connection, " + e.getMessage() + "\n");
         }
 
-		return feedRssXml;
-	}
-
-	public String getFeedReedit(String urlFeed) {
-		String feedReeditJson = null;
-		return feedReeditJson;
+		return feedData;
 	}
 
 }
