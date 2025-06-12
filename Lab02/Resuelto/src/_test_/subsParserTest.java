@@ -9,6 +9,7 @@ public class subsParserTest {
     
         SubscriptionParser parser = new SubscriptionParser();
         Subscription sub = parser.parse(jsonpath);    
+
         sub.prettyPrint();
 
     }
