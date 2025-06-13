@@ -22,3 +22,7 @@ Parcial_1 - Programación Funcional en Haskell
 ---
 
 Parcial_2 - Programación Orientada a Objetos en Java
+
+---
+
+Parcial_2_recu - Programación Orientada a Objetos en Java
